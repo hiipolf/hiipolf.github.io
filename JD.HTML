@@ -4,14 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>京东金融</title>
+    <!-- 引入Tailwind CSS和Font Awesome图标库 -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <script>
+        // 配置Tailwind CSS主题
         tailwind.config = {
             theme: {
                 extend: {
                     colors: {
                         primary: '#E4393C', // 京东红
+                        secondary: '#FFA000', // 辅助橙
                         neutral: '#F5F5F5',
                         dark: '#333333',
                     },
@@ -24,9 +27,11 @@
     </script>
     <style type="text/tailwindcss">
         @layer utilities {
+            /* 卡片阴影样式 */
             .card-shadow {
                 box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
             }
+            /* 悬停缩放和阴影效果 */
             .hover-scale {
                 transition: transform 0.2s ease, box-shadow 0.2s ease;
             }
@@ -38,96 +43,86 @@
     </style>
 </head>
 <body class="bg-neutral min-h-screen font-sans text-dark flex justify-center">
-    <!-- 主内容区 - 限制宽度为2/3 -->
-    <div class="w-[min(66.667%,400px)] mx-auto px-4 py-4">
-        <!-- 标题区域 - 左对齐 -->
-        <div class="bg-primary rounded-lg p-3 mb-4 text-left">
-            <h1 class="text-xl font-bold text-white">京东金融</h1>
-            <p class="text-sm text-white/80">您的财务管家</p>
+    <!-- 主内容区，最大宽度80%且不超过480px -->
+    <div class="w-[min(80%,480px)] mx-auto px-4 py-6">
+        <!-- 标题区域 -->
+        <div class="bg-primary rounded-xl p-4 mb-4 flex items-center">
+            <!-- 京东logo -->
+            <div class="w-12 h-12 bg-white rounded-lg flex items-center justify-center mr-4 shadow-sm">
+                <span class="text-primary font-bold text-xl">JD</span>
+            </div>
+            <div>
+                <h1 class="text-xl font-bold text-white">京东金融</h1>
+                <p class="text-xs text-white/80">您的财务管家</p>
+            </div>
         </div>
-        
-        <div class="space-y-2">
-            <!-- 理财资产 -->
-            <a href="https://channel.jr.jd.com/wealthAssets/index/?source=jdcfgongzhonghao&channelCode=CFCCsingle01&fundUtmSource=1089_jdcfgongzhonghao&fundUtmParam=totalHoldjdcfgongzhonghao" 
-               class="block bg-white rounded-lg p-3 card-shadow hover-scale">
-                <div class="flex items-center">
-                    <div class="w-8 h-8 flex items-center justify-center text-primary mr-3">
-                        <i class="fa fa-line-chart"></i>
-                    </div>
-                    <div class="flex-1">
-                        <h3 class="font-semibold text-base">理财资产</h3>
-                    </div>
-                    <div class="text-gray-400">
-                        <i class="fa fa-angle-right"></i>
-                    </div>
-                </div>
-            </a>
-            
-            <!-- 理财月报 -->
-            <a href="https://mse.jd.com/monthReport/aggregation/?utm_term=copyurl" 
-               class="block bg-white rounded-lg p-3 card-shadow hover-scale">
-                <div class="flex items-center">
-                    <div class="w-8 h-8 flex items-center justify-center text-primary mr-3">
-                        <i class="fa fa-calendar-check-o"></i>
-                    </div>
-                    <div class="flex-1">
-                        <h3 class="font-semibold text-base">理财月报</h3>
-                    </div>
-                    <div class="text-gray-400">
-                        <i class="fa fa-angle-right"></i>
-                    </div>
-                </div>
-            </a>
-            
-            <!-- 财富会员 -->
-            <a href="https://member.jr.jd.com/member/memberCenter/badge/?businessCode=caifu&channel=81" 
-               class="block bg-white rounded-lg p-3 card-shadow hover-scale">
-                <div class="flex items-center">
-                    <div class="w-8 h-8 flex items-center justify-center text-primary mr-3">
-                        <i class="fa fa-diamond"></i>
-                    </div>
-                    <div class="flex-1">
-                        <h3 class="font-semibold text-base">财富会员</h3>
-                    </div>
-                    <div class="text-gray-400">
-                        <i class="fa fa-angle-right"></i>
-                    </div>
-                </div>
-            </a>
-            
-            <!-- 我的账单 -->
-            <a href="https://roma.jd.com/bill/JRJueMyBillModule?source=10&entrance=3#pageBillEntry" 
-               class="block bg-white rounded-lg p-3 card-shadow hover-scale">
-                <div class="flex items-center">
-                    <div class="w-8 h-8 flex items-center justify-center text-primary mr-3">
-                        <i class="fa fa-credit-card"></i>
-                    </div>
-                    <div class="flex-1">
-                        <h3 class="font-semibold text-base">我的账单</h3>
-                    </div>
-                    <div class="text-gray-400">
-                        <i class="fa fa-angle-right"></i>
-                    </div>
-                </div>
-            </a>
-            
-            <!-- 我的订单 -->
-            <a href="https://fq.jr.jd.com/major/orders/index.html?tab=0&jrcontainer=h5&jrlogin=true&sid=&jrcontainer=h5&jrlogin=&jrcloseweb=false&jrwallet=false&jrxviewtype=false&jrgobackrefresh=false&rawJumpUrl=https%3A%2F%2Ffq.jr.jd.com%2Fmajor%2Forders%2Findex.html%3Ftab%3D0%26jrcontainer%3Dh5%26jrlogin%3Dtrue%26sid%3D&utm_term=copyurl" 
-               class="block bg-white rounded-lg p-3 card-shadow hover-scale">
-                <div class="flex items-center">
-                    <div class="w-8 h-8 flex items-center justify-center text-primary mr-3">
-                        <i class="fa fa-list-alt"></i>
-                    </div>
-                    <div class="flex-1">
-                        <h3 class="font-semibold text-base">我的订单</h3>
-                    </div>
-                    <div class="text-gray-400">
-                        <i class="fa fa-angle-right"></i>
-                    </div>
-                </div>
-            </a>
-        </div>
+
+        <!-- 链接列表容器 -->
+        <div id="links-container" class="space-y-2"></div>
     </div>
+
+    <script>
+        // 链接数据
+        const links = [
+            {
+                href: 'https://channel.jr.jd.com/wealthAssets/index/?source=jdcfgongzhonghao&channelCode=CFCCsingle01&fundUtmSource=1089_jdcfgongzhonghao&fundUtmParam=totalHoldjdcfgongzhonghao',
+                iconClass: 'fa fa-line-chart',
+                title: '理财资产'
+            },
+            {
+                href: 'https://mse.jd.com/monthReport/aggregation/?utm_term=copyurl',
+                iconClass: 'fa fa-calendar-check-o',
+                title: '理财月报'
+            },
+            {
+                href: 'https://member.jr.jd.com/member/memberCenter/badge/?businessCode=caifu&channel=81',
+                iconClass: 'fa fa-diamond',
+                title: '财富会员'
+            },
+            {
+                href: 'https://roma.jd.com/bill/JRJueMyBillModule?source=10&entrance=3#pageBillEntry',
+                iconClass: 'fa fa-credit-card',
+                title: '我的账单'
+            },
+            {
+                href: 'https://fq.jr.jd.com/major/orders/index.html?tab=0&jrcontainer=h5&jrlogin=true&sid=&jrcontainer=h5&jrlogin=&jrcloseweb=false&jrwallet=false&jrxviewtype=false&jrgobackrefresh=false&rawJumpUrl=https%3A%2F%2Ffq.jr.jd.com%2Fmajor%2Forders%2Findex.html%3Ftab%3D0%26jrcontainer%3Dh5%26jrlogin%3Dtrue%26sid%3D&utm_term=copyurl',
+                iconClass: 'fa fa-list-alt',
+                title: '我的订单'
+            }
+        ];
+
+        // 生成链接HTML的函数 - 优化了卡片高度
+        function generateLinkHTML(link) {
+            return `
+                <a href="${link.href}" class="block bg-white rounded-lg p-3 card-shadow hover-scale"> <!-- 减小内边距 -->
+                    <div class="flex items-center">
+                        <div class="w-10 h-10 flex items-center justify-center text-primary mr-3"> <!-- 减小图标容器尺寸 -->
+                            <i class="${link.iconClass} text-lg"></i> <!-- 减小图标大小 -->
+                        </div>
+                        <div class="flex-1">
+                            <h3 class="font-semibold text-base">${link.title}</h3>
+                        </div>
+                        <div class="text-gray-400">
+                            <i class="fa fa-angle-right text-lg"></i>
+                        </div>
+                    </div>
+                </a>
+            `;
+        }
+
+        // 渲染所有链接
+        function renderLinks() {
+            const container = document.getElementById('links-container');
+            container.innerHTML = ''; // 清空容器
+            
+            links.forEach(link => {
+                const linkHTML = generateLinkHTML(link);
+                container.insertAdjacentHTML('beforeend', linkHTML);
+            });
+        }
+
+        // 页面加载完成后渲染链接
+        document.addEventListener('DOMContentLoaded', renderLinks);
+    </script>
 </body>
 </html>
-    
