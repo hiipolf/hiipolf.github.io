@@ -4,9 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>京东金融</title>
-    <!-- 引入Tailwind CSS和Font Awesome图标库 -->
+    <!-- 引入Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <!-- 引入Bootstrap Icons (国内CDN) -->
+    <link href="https://cdn.staticfile.org/bootstrap-icons/1.10.5/font/bootstrap-icons.min.css" rel="stylesheet">
+    
     <script>
         // 配置Tailwind CSS主题
         tailwind.config = {
@@ -39,6 +41,15 @@
                 transform: translateY(-2px);
                 box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
             }
+            /* 图标容器样式 */
+            .icon-container {
+                width: 2.5rem;
+                height: 2.5rem;
+                border-radius: 0.5rem;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
         }
     </style>
 </head>
@@ -62,48 +73,53 @@
     </div>
 
     <script>
-        // 链接数据
+        // 链接数据 - 调整财富会员图标为铜钱
         const links = [
             {
                 href: 'https://channel.jr.jd.com/wealthAssets/index/?source=jdcfgongzhonghao&channelCode=CFCCsingle01&fundUtmSource=1089_jdcfgongzhonghao&fundUtmParam=totalHoldjdcfgongzhonghao',
-                iconClass: 'fa fa-line-chart',
-                title: '理财资产'
+                iconClass: 'bi-graph-up',
+                title: '理财资产',
+                iconColor: 'text-primary'
             },
             {
                 href: 'https://mse.jd.com/monthReport/aggregation/?utm_term=copyurl',
-                iconClass: 'fa fa-calendar-check-o',
-                title: '理财月报'
+                iconClass: 'bi-calendar-check',
+                title: '理财月报',
+                iconColor: 'text-primary'
             },
             {
                 href: 'https://member.jr.jd.com/member/memberCenter/badge/?businessCode=caifu&channel=81',
-                iconClass: 'fa fa-diamond',
-                title: '财富会员'
+                iconClass: 'bi-cash-coin', // 调整为铜钱图标
+                title: '财富会员',
+                iconColor: 'text-primary'
             },
             {
                 href: 'https://roma.jd.com/bill/JRJueMyBillModule?source=10&entrance=3#pageBillEntry',
-                iconClass: 'fa fa-credit-card',
-                title: '我的账单'
+                iconClass: 'bi-credit-card',
+                title: '我的账单',
+                iconColor: 'text-primary'
             },
             {
                 href: 'https://fq.jr.jd.com/major/orders/index.html?tab=0&jrcontainer=h5&jrlogin=true&sid=&jrcontainer=h5&jrlogin=&jrcloseweb=false&jrwallet=false&jrxviewtype=false&jrgobackrefresh=false&rawJumpUrl=https%3A%2F%2Ffq.jr.jd.com%2Fmajor%2Forders%2Findex.html%3Ftab%3D0%26jrcontainer%3Dh5%26jrlogin%3Dtrue%26sid%3D&utm_term=copyurl',
-                iconClass: 'fa fa-list-alt',
-                title: '我的订单'
+                iconClass: 'bi-list-ul',
+                title: '我的订单',
+                iconColor: 'text-primary'
             }
         ];
 
-        // 生成链接HTML的函数 - 优化了卡片高度
+        // 生成链接HTML的函数
         function generateLinkHTML(link) {
             return `
-                <a href="${link.href}" class="block bg-white rounded-lg p-3 card-shadow hover-scale"> <!-- 减小内边距 -->
+                <a href="${link.href}" class="block bg-white rounded-lg p-3 card-shadow hover-scale">
                     <div class="flex items-center">
-                        <div class="w-10 h-10 flex items-center justify-center text-primary mr-3"> <!-- 减小图标容器尺寸 -->
-                            <i class="${link.iconClass} text-lg"></i> <!-- 减小图标大小 -->
+                        <div class="icon-container ${link.iconColor} mr-3">
+                            <i class="${link.iconClass} text-lg"></i>
                         </div>
                         <div class="flex-1">
                             <h3 class="font-semibold text-base">${link.title}</h3>
                         </div>
                         <div class="text-gray-400">
-                            <i class="fa fa-angle-right text-lg"></i>
+                            <i class="bi-chevron-right text-lg"></i>
                         </div>
                     </div>
                 </a>
