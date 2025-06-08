@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>京东金融</title>
+    <!-- 设置网页图标为京东风格logo -->
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23E4393C'/%3E%3Ctext x='50' y='60' font-family='Arial' font-size='40' font-weight='bold' text-anchor='middle' fill='white'%3EJD%3C/text%3E%3C/svg%3E">
     <!-- 引入Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- 引入Bootstrap Icons (国内CDN) -->
@@ -53,9 +55,9 @@
         }
     </style>
 </head>
-<body class="bg-neutral min-h-screen font-sans text-dark flex justify-center">
-    <!-- 主内容区，最大宽度80%且不超过480px -->
-    <div class="w-[min(80%,480px)] mx-auto px-4 py-6">
+<body class="bg-neutral min-h-screen font-sans text-dark">
+    <!-- 主内容区 - 取消了最大宽度和比例限制 -->
+    <div class="mx-auto px-4 py-6">
         <!-- 标题区域 -->
         <div class="bg-primary rounded-xl p-4 mb-4 flex items-center">
             <!-- 京东logo -->
@@ -73,7 +75,7 @@
     </div>
 
     <script>
-        // 链接数据 - 调整财富会员图标为铜钱
+        // 链接数据
         const links = [
             {
                 href: 'https://channel.jr.jd.com/wealthAssets/index/?source=jdcfgongzhonghao&channelCode=CFCCsingle01&fundUtmSource=1089_jdcfgongzhonghao&fundUtmParam=totalHoldjdcfgongzhonghao',
@@ -89,7 +91,7 @@
             },
             {
                 href: 'https://member.jr.jd.com/member/memberCenter/badge/?businessCode=caifu&channel=81',
-                iconClass: 'bi-cash-coin', // 调整为铜钱图标
+                iconClass: 'bi-cash-coin',
                 title: '财富会员',
                 iconColor: 'text-primary'
             },
