@@ -3,206 +3,131 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>京东金融导航</title>
+    <title>京东金融</title>
+    <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
-    <style>
-        /* 全局样式 */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'PingFang SC', 'Helvetica Neue', Arial, sans-serif;
-        }
-
-        body {
-            background-color: #f5f5f5;
-            line-height: 1.6;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-
-        .section-title {
-            font-size: 1.375rem;
-            font-weight: 600;
-            color: #333;
-            display: flex;
-            align-items: center;
-            gap: 1.25rem;
-        }
-
-        .section-icon {
-            font-size: 1.5rem;
-        }
-
-        .section-desc {
-            color: #666;
-            margin-top: 1.25rem;
-            line-height: 1.7;
-        }
-
-        .action-button {
-            display: inline-block;
-            padding: 1rem 2.5rem;
-            font-size: 1.05rem;
-            font-weight: 500;
-            border-radius: 12px;
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-
-        .action-button-primary {
-            background-color: #E4393C;
-            color: white;
-        }
-
-        .action-button-primary:hover {
-            background-color: #c42e31;
-        }
-
-        .action-button-secondary {
-            background-color: #FFA500;
-            color: white;
-        }
-
-        .action-button-secondary:hover {
-            background-color: #ff8f00;
-        }
-
-        .card {
-            background-color: white;
-            border-radius: 20px;
-            padding: 3rem 2.5rem;
-            margin-bottom: 2rem;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 12px 24px rgba(228, 57, 60, 0.12);
-        }
-
-        .card-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 3rem;
-        }
-
-        /* 响应式布局 */
-        @media (max-width: 767px) {
-            .card-content {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 1.5rem;
-            }
-
-            .action-button {
-                padding: 0.875rem 2rem;
-                font-size: 0.95rem;
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#E4393C', // 京东红
+                        neutral: '#F5F5F5',
+                        dark: '#333333',
+                    },
+                    fontFamily: {
+                        sans: ['PingFang SC', 'Helvetica Neue', 'Arial', 'sans-serif'],
+                    },
+                }
             }
         }
-
-        footer {
-            margin-top: 4rem;
-            padding: 2rem 0;
-            text-align: center;
-            color: #666;
-            font-size: 0.875rem;
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .card-shadow {
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            }
+            .hover-scale {
+                transition: transform 0.2s ease, box-shadow 0.2s ease;
+            }
+            .hover-scale:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            }
         }
     </style>
 </head>
-<body>
-    <div class="container">
-        <main>
-            <!-- 理财资产卡片 -->
-            <div class="card">
-                <div class="card-content">
-                    <div>
-                        <h2 class="section-title">
-                            <i class="fa fa-line-chart section-icon text-primary"></i>
-                            理财资产
-                        </h2>
-                        <p class="section-desc">
-                            全面了解您的资产状况，包括基金、定期理财等各类产品的持有情况和收益表现。
-                        </p>
+<body class="bg-neutral min-h-screen font-sans text-dark flex justify-center">
+    <!-- 主内容区 - 限制宽度为2/3 -->
+    <div class="w-[min(66.667%,400px)] mx-auto px-4 py-4">
+        <!-- 标题区域 - 左对齐 -->
+        <div class="bg-primary rounded-lg p-3 mb-4 text-left">
+            <h1 class="text-xl font-bold text-white">京东金融</h1>
+            <p class="text-sm text-white/80">您的财务管家</p>
+        </div>
+        
+        <div class="space-y-2">
+            <!-- 理财资产 -->
+            <a href="https://channel.jr.jd.com/wealthAssets/index/?source=jdcfgongzhonghao&channelCode=CFCCsingle01&fundUtmSource=1089_jdcfgongzhonghao&fundUtmParam=totalHoldjdcfgongzhonghao" 
+               class="block bg-white rounded-lg p-3 card-shadow hover-scale">
+                <div class="flex items-center">
+                    <div class="w-8 h-8 flex items-center justify-center text-primary mr-3">
+                        <i class="fa fa-line-chart"></i>
                     </div>
-                    <a href="https://channel.jr.jd.com/wealthAssets/index/?source=jdcfgongzhonghao&channelCode=CFCCsingle01&fundUtmSource=1089_jdcfgongzhonghao&fundUtmParam=totalHoldjdcfgongzhonghao" 
-                       class="action-button action-button-primary"
-                       target="_blank">
-                        查看详情 <i class="fa fa-arrow-right ml-2"></i>
-                    </a>
-                </div>
-            </div>
-
-            <!-- 理财月报卡片 -->
-            <div class="card">
-                <div class="card-content">
-                    <div>
-                        <h2 class="section-title">
-                            <i class="fa fa-calendar-check-o section-icon text-secondary"></i>
-                            理财月报
-                        </h2>
-                        <p class="section-desc">
-                            每月定期生成的理财报告，包含资产分析、收益总结和投资建议，助您把握理财节奏。
-                        </p>
+                    <div class="flex-1">
+                        <h3 class="font-semibold text-base">理财资产</h3>
                     </div>
-                    <a href="https://mse.jd.com/monthReport/aggregation/?utm_term=copyurl" 
-                       class="action-button action-button-secondary"
-                       target="_blank">
-                        查看月报 <i class="fa fa-arrow-right ml-2"></i>
-                    </a>
-                </div>
-            </div>
-
-            <!-- 财富会员卡片 -->
-            <div class="card">
-                <div class="card-content">
-                    <div>
-                        <h2 class="section-title">
-                            <i class="fa fa-diamond section-icon text-primary"></i>
-                            财富会员
-                        </h2>
-                        <p class="section-desc">
-                            专属会员权益体系，根据您的资产水平提供定制化服务、优先体验权和专属优惠活动。
-                        </p>
+                    <div class="text-gray-400">
+                        <i class="fa fa-angle-right"></i>
                     </div>
-                    <a href="https://member.jr.jd.com/member/memberCenter/badge/?businessCode=caifu&channel=81" 
-                       class="action-button action-button-primary"
-                       target="_blank">
-                        会员中心 <i class="fa fa-arrow-right ml-2"></i>
-                    </a>
                 </div>
-            </div>
-
-            <!-- 我的账单卡片 -->
-            <div class="card">
-                <div class="card-content">
-                    <div>
-                        <h2 class="section-title">
-                            <i class="fa fa-credit-card section-icon text-secondary"></i>
-                            我的账单
-                        </h2>
-                        <p class="section-desc">
-                            集中管理您的金融交易记录，支持查询、导出和分类统计，让财务状况一目了然。
-                        </p>
+            </a>
+            
+            <!-- 理财月报 -->
+            <a href="https://mse.jd.com/monthReport/aggregation/?utm_term=copyurl" 
+               class="block bg-white rounded-lg p-3 card-shadow hover-scale">
+                <div class="flex items-center">
+                    <div class="w-8 h-8 flex items-center justify-center text-primary mr-3">
+                        <i class="fa fa-calendar-check-o"></i>
                     </div>
-                    <a href="https://roma.jd.com/bill/JRJueMyBillModule?source=10&entrance=3#pageBillEntry" 
-                       class="action-button action-button-secondary"
-                       target="_blank">
-                        账单管理 <i class="fa fa-arrow-right ml-2"></i>
-                    </a>
+                    <div class="flex-1">
+                        <h3 class="font-semibold text-base">理财月报</h3>
+                    </div>
+                    <div class="text-gray-400">
+                        <i class="fa fa-angle-right"></i>
+                    </div>
                 </div>
-            </div>
-        </main>
-
-        <footer>
-            <p>© 2025 京东金融 | 理财有风险，投资需谨慎</p>
-        </footer>
+            </a>
+            
+            <!-- 财富会员 -->
+            <a href="https://member.jr.jd.com/member/memberCenter/badge/?businessCode=caifu&channel=81" 
+               class="block bg-white rounded-lg p-3 card-shadow hover-scale">
+                <div class="flex items-center">
+                    <div class="w-8 h-8 flex items-center justify-center text-primary mr-3">
+                        <i class="fa fa-diamond"></i>
+                    </div>
+                    <div class="flex-1">
+                        <h3 class="font-semibold text-base">财富会员</h3>
+                    </div>
+                    <div class="text-gray-400">
+                        <i class="fa fa-angle-right"></i>
+                    </div>
+                </div>
+            </a>
+            
+            <!-- 我的账单 -->
+            <a href="https://roma.jd.com/bill/JRJueMyBillModule?source=10&entrance=3#pageBillEntry" 
+               class="block bg-white rounded-lg p-3 card-shadow hover-scale">
+                <div class="flex items-center">
+                    <div class="w-8 h-8 flex items-center justify-center text-primary mr-3">
+                        <i class="fa fa-credit-card"></i>
+                    </div>
+                    <div class="flex-1">
+                        <h3 class="font-semibold text-base">我的账单</h3>
+                    </div>
+                    <div class="text-gray-400">
+                        <i class="fa fa-angle-right"></i>
+                    </div>
+                </div>
+            </a>
+            
+            <!-- 我的订单 -->
+            <a href="https://fq.jr.jd.com/major/orders/index.html?tab=0&jrcontainer=h5&jrlogin=true&sid=&jrcontainer=h5&jrlogin=&jrcloseweb=false&jrwallet=false&jrxviewtype=false&jrgobackrefresh=false&rawJumpUrl=https%3A%2F%2Ffq.jr.jd.com%2Fmajor%2Forders%2Findex.html%3Ftab%3D0%26jrcontainer%3Dh5%26jrlogin%3Dtrue%26sid%3D&utm_term=copyurl" 
+               class="block bg-white rounded-lg p-3 card-shadow hover-scale">
+                <div class="flex items-center">
+                    <div class="w-8 h-8 flex items-center justify-center text-primary mr-3">
+                        <i class="fa fa-list-alt"></i>
+                    </div>
+                    <div class="flex-1">
+                        <h3 class="font-semibold text-base">我的订单</h3>
+                    </div>
+                    <div class="text-gray-400">
+                        <i class="fa fa-angle-right"></i>
+                    </div>
+                </div>
+            </a>
+        </div>
     </div>
 </body>
 </html>
+    
