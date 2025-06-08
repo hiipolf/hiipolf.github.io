@@ -12,22 +12,12 @@
                 extend: {
                     colors: {
                         primary: '#E4393C', // 京东红
-                        secondary: '#FFA000', // 辅助橙
                         neutral: '#F5F5F5',
                         dark: '#333333',
-                        'primary-light': '#FFF0F0',
-                        'primary-dark': '#C52D30',
                     },
                     fontFamily: {
                         sans: ['PingFang SC', 'Helvetica Neue', 'Arial', 'sans-serif'],
                     },
-                    backgroundImage: {
-                        'noise-texture': "url('data:image/svg+xml,%3Csvg viewBox=\"0 0 200 200\" xmlns=\"http://www.w3.org/2000/svg\"%3E%3Cfilter id=\"noiseFilter\"%3E%3CfeTurbulence type=\"fractalNoise\" baseFrequency=\"0.65\" numOctaves=\"3\" stitchTiles=\"stitch\"/%3E%3C/filter%3E%3Crect width=\"100%25\" height=\"100%25\" filter=\"url(%23noiseFilter)\"/%3E%3C/svg%3E')",
-                    },
-                    boxShadow: {
-                        'card': '0 4px 16px rgba(228, 57, 60, 0.05)',
-                        'card-hover': '0 8px 24px rgba(228, 57, 60, 0.12)',
-                    }
                 }
             }
         }
@@ -35,129 +25,104 @@
     <style type="text/tailwindcss">
         @layer utilities {
             .card-shadow {
-                box-shadow: 0 4px 20px rgba(228, 57, 60, 0.08);
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
             }
             .hover-scale {
                 transition: transform 0.2s ease, box-shadow 0.2s ease;
             }
             .hover-scale:hover {
                 transform: translateY(-2px);
-                box-shadow: 0 8px 24px rgba(228, 57, 60, 0.12);
-            }
-            .bg-gradient-soft {
-                background: linear-gradient(135deg, #FFF5F5 0%, #F5F5F5 100%);
-            }
-            .text-balance {
-                text-wrap: balance;
-            }
-            .animate-float {
-                animation: float 6s ease-in-out infinite;
-            }
-            @keyframes float {
-                0% { transform: translateY(0px); }
-                50% { transform: translateY(-8px); }
-                100% { transform: translateY(0px); }
-            }
-            .text-shadow {
-                text-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-            }
-            .brand-gradient {
-                background: linear-gradient(135deg, #E4393C 0%, #C52D30 100%);
-                -webkit-background-clip: text;
-                -webkit-text-fill-color: transparent;
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
             }
         }
     </style>
 </head>
-<body class="bg-gradient-soft bg-noise-texture bg-opacity-5 min-h-screen font-sans text-dark">
-    <!-- 主内容区 -->
-    <div class="container mx-auto px-4 py-8 max-w-3xl">
-        <!-- 优化后的标题区域 -->
-        <div class="text-center mb-8 relative">
-            <!-- 装饰性元素 -->
-            <div class="absolute inset-0 flex items-center justify-center opacity-20 pointer-events-none">
-                <i class="fa fa-shield text-6xl text-primary/30 animate-float" style="animation-delay: -2s;"></i>
-            </div>
-            
-            <!-- 品牌标题 -->
-            <h1 class="relative text-[clamp(2rem,5vw,3rem)] font-bold brand-gradient mb-2 tracking-tight">
-                京东金融
-            </h1>
-            
-            <!-- 副标题 -->
-            <p class="text-gray-600 text-balance max-w-md mx-auto">
-                安全、专业的一站式金融服务平台
-            </p>
-            
-            <!-- 分隔线 -->
-            <div class="mt-6 w-20 h-1 bg-primary mx-auto rounded-full"></div>
+<body class="bg-neutral min-h-screen font-sans text-dark flex justify-center">
+    <!-- 主内容区 - 限制宽度为2/3 -->
+    <div class="w-[min(66.667%,400px)] mx-auto px-4 py-4">
+        <!-- 标题区域 - 左对齐 -->
+        <div class="bg-primary rounded-lg p-3 mb-4 text-left">
+            <h1 class="text-xl font-bold text-white">京东金融</h1>
+            <p class="text-sm text-white/80">您的财务管家</p>
         </div>
         
-        <div class="space-y-4">
+        <div class="space-y-2">
             <!-- 理财资产 -->
             <a href="https://channel.jr.jd.com/wealthAssets/index/?source=jdcfgongzhonghao&channelCode=CFCCsingle01&fundUtmSource=1089_jdcfgongzhonghao&fundUtmParam=totalHoldjdcfgongzhonghao" 
-               class="block bg-white rounded-xl p-4 card-shadow hover-scale">
+               class="block bg-white rounded-lg p-3 card-shadow hover-scale">
                 <div class="flex items-center">
-                    <div class="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center text-primary mr-4 animate-float">
-                        <i class="fa fa-line-chart text-xl"></i>
+                    <div class="w-8 h-8 flex items-center justify-center text-primary mr-3">
+                        <i class="fa fa-line-chart"></i>
                     </div>
-                    <div>
-                        <h3 class="font-semibold text-base md:text-lg">理财资产</h3>
-                        <p class="text-gray-500 text-xs mt-0.5">查看您的资产分布与收益情况</p>
+                    <div class="flex-1">
+                        <h3 class="font-semibold text-base">理财资产</h3>
                     </div>
-                    <div class="ml-auto text-gray-400">
-                        <i class="fa fa-angle-right text-lg"></i>
+                    <div class="text-gray-400">
+                        <i class="fa fa-angle-right"></i>
                     </div>
                 </div>
             </a>
             
             <!-- 理财月报 -->
             <a href="https://mse.jd.com/monthReport/aggregation/?utm_term=copyurl" 
-               class="block bg-white rounded-xl p-4 card-shadow hover-scale">
+               class="block bg-white rounded-lg p-3 card-shadow hover-scale">
                 <div class="flex items-center">
-                    <div class="w-12 h-12 rounded-xl bg-secondary/10 flex items-center justify-center text-secondary mr-4 animate-float" style="animation-delay: -1s;">
-                        <i class="fa fa-calendar-check-o text-xl"></i>
+                    <div class="w-8 h-8 flex items-center justify-center text-primary mr-3">
+                        <i class="fa fa-calendar-check-o"></i>
                     </div>
-                    <div>
-                        <h3 class="font-semibold text-base md:text-lg">理财月报</h3>
-                        <p class="text-gray-500 text-xs mt-0.5">每月财务状况分析与总结</p>
+                    <div class="flex-1">
+                        <h3 class="font-semibold text-base">理财月报</h3>
                     </div>
-                    <div class="ml-auto text-gray-400">
-                        <i class="fa fa-angle-right text-lg"></i>
+                    <div class="text-gray-400">
+                        <i class="fa fa-angle-right"></i>
                     </div>
                 </div>
             </a>
             
             <!-- 财富会员 -->
             <a href="https://member.jr.jd.com/member/memberCenter/badge/?businessCode=caifu&channel=81" 
-               class="block bg-white rounded-xl p-4 card-shadow hover-scale">
+               class="block bg-white rounded-lg p-3 card-shadow hover-scale">
                 <div class="flex items-center">
-                    <div class="w-12 h-12 rounded-xl bg-green-100 flex items-center justify-center text-green-600 mr-4 animate-float" style="animation-delay: -2s;">
-                        <i class="fa fa-diamond text-xl"></i>
+                    <div class="w-8 h-8 flex items-center justify-center text-primary mr-3">
+                        <i class="fa fa-diamond"></i>
                     </div>
-                    <div>
-                        <h3 class="font-semibold text-base md:text-lg">财富会员</h3>
-                        <p class="text-gray-500 text-xs mt-0.5">查看会员等级与专属权益</p>
+                    <div class="flex-1">
+                        <h3 class="font-semibold text-base">财富会员</h3>
                     </div>
-                    <div class="ml-auto text-gray-400">
-                        <i class="fa fa-angle-right text-lg"></i>
+                    <div class="text-gray-400">
+                        <i class="fa fa-angle-right"></i>
                     </div>
                 </div>
             </a>
             
             <!-- 我的账单 -->
             <a href="https://roma.jd.com/bill/JRJueMyBillModule?source=10&entrance=3#pageBillEntry" 
-               class="block bg-white rounded-xl p-4 card-shadow hover-scale">
+               class="block bg-white rounded-lg p-3 card-shadow hover-scale">
                 <div class="flex items-center">
-                    <div class="w-12 h-12 rounded-xl bg-purple-100 flex items-center justify-center text-purple-600 mr-4 animate-float" style="animation-delay: -3s;">
-                        <i class="fa fa-credit-card text-xl"></i>
+                    <div class="w-8 h-8 flex items-center justify-center text-primary mr-3">
+                        <i class="fa fa-credit-card"></i>
                     </div>
-                    <div>
-                        <h3 class="font-semibold text-base md:text-lg">我的账单</h3>
-                        <p class="text-gray-500 text-xs mt-0.5">管理您的财务交易记录</p>
+                    <div class="flex-1">
+                        <h3 class="font-semibold text-base">我的账单</h3>
                     </div>
-                    <div class="ml-auto text-gray-400">
-                        <i class="fa fa-angle-right text-lg"></i>
+                    <div class="text-gray-400">
+                        <i class="fa fa-angle-right"></i>
+                    </div>
+                </div>
+            </a>
+            
+            <!-- 我的订单 -->
+            <a href="https://fq.jr.jd.com/major/orders/index.html?tab=0&jrcontainer=h5&jrlogin=true&sid=&jrcontainer=h5&jrlogin=&jrcloseweb=false&jrwallet=false&jrxviewtype=false&jrgobackrefresh=false&rawJumpUrl=https%3A%2F%2Ffq.jr.jd.com%2Fmajor%2Forders%2Findex.html%3Ftab%3D0%26jrcontainer%3Dh5%26jrlogin%3Dtrue%26sid%3D&utm_term=copyurl" 
+               class="block bg-white rounded-lg p-3 card-shadow hover-scale">
+                <div class="flex items-center">
+                    <div class="w-8 h-8 flex items-center justify-center text-primary mr-3">
+                        <i class="fa fa-list-alt"></i>
+                    </div>
+                    <div class="flex-1">
+                        <h3 class="font-semibold text-base">我的订单</h3>
+                    </div>
+                    <div class="text-gray-400">
+                        <i class="fa fa-angle-right"></i>
                     </div>
                 </div>
             </a>
