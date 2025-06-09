@@ -6,7 +6,9 @@
     <title>京东金融</title>
     <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%239D5C5C'/%3E%3Ctext x='50' y='60' font-family='Arial' font-size='40' font-weight='bold' text-anchor='middle' fill='white'%3EJD%3C/text%3E%3C/svg%3E">
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://cdn.staticfile.org/bootstrap-icons/1.10.5/font/bootstrap-icons.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.min.css" rel="stylesheet">
     
     <script>
         tailwind.config = {
@@ -25,39 +27,63 @@
                     fontFamily: {
                         sans: ['Inter', 'system-ui', 'sans-serif'],
                     },
+                    boxShadow: {
+                        'card': '0 2px 8px rgba(0,0,0,0.08)',
+                        'card-hover': '0 4px 12px rgba(0,0,0,0.12)'
+                    }
                 }
             }
         }
     </script>
     <style type="text/tailwindcss">
-        @layer utilities { 
-            .card-shadow { box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
-            .card-grid { @apply grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-2; }
-            .category-title { @apply text-lg font-bold flex items-center; }
-            .category-card { @apply bg-white rounded-xl shadow-md overflow-hidden mb-6 transition-all duration-300 hover:shadow-lg; }
-            .category-header { @apply p-4 flex items-center text-white; }
-            .card-hover { @apply transition-all duration-300 hover:shadow-md hover:-translate-y-1; }
-            .mobile-card-grid { @apply grid grid-cols-2 gap-2; } /* 手机端两列布局 */
-            .mobile-link-card { @apply p-3 rounded-lg shadow-sm hover:shadow-md transition-shadow; } /* 优化移动端卡片样式 */
+        @layer utilities {
+            .content-auto {
+                content-visibility: auto;
+            }
+            .card-grid {
+                @apply grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3;
+            }
+            .category-title {
+                @apply text-lg font-bold flex items-center;
+            }
+            .card-hover {
+                @apply transition-all duration-300 hover:shadow-card-hover hover:-translate-y-1;
+            }
+            .icon-container {
+                @apply w-10 h-10 flex items-center justify-center rounded-lg;
+            }
         }
     </style>
 </head>
 <body class="bg-gray-50 min-h-screen font-sans text-gray-800">
-    <div class="mx-auto px-3 py-4"> <!-- 减小页面边距 -->
-        <div class="bg-primary rounded-xl p-3 mb-4 flex items-center"> <!-- 减小标题区域内边距 -->
-            <div class="w-10 h-10 bg-white rounded-lg flex items-center justify-center mr-3 shadow-sm"> <!-- 减小logo尺寸 -->
-                <span class="text-primary font-bold text-lg">JD</span> <!-- 减小logo文字大小 -->
+    <!-- 页面容器 -->
+    <div class="container mx-auto px-4 py-6">
+        <!-- 顶部导航栏 -->
+        <header class="bg-primary rounded-xl p-4 mb-6 shadow-md">
+            <div class="flex items-center">
+                <div class="icon-container bg-white text-primary mr-4 shadow-sm">
+                    <span class="font-bold text-xl">JD</span>
+                </div>
+                <div>
+                    <h1 class="text-xl font-bold text-white">理财中心</h1>
+                    <p class="text-xs text-white/80">您的财务管家</p>
+                </div>
             </div>
-            <div>
-                <h1 class="text-lg font-bold text-white">理财中心</h1> <!-- 减小标题文字大小 -->
-                <p class="text-xs text-white/80">您的财务管家</p>
-            </div>
-        </div>
+        </header>
 
-        <div id="links-container" class="space-y-4"></div> <!-- 减小分类间距 -->
+        <!-- 主内容区 -->
+        <main id="links-container" class="space-y-6"></main>
     </div>
 
     <script>
+        // 图标配置 - 统一管理图标映射，支持多图标库
+        const ICON_LIBRARIES = {
+            'bi': 'bootstrap-icons',
+            'fa': 'font-awesome',
+            'ri': 'remix-icon'
+        };
+
+        // 应用数据
         const categories = [
             {
                 title: '理财信息',
@@ -65,11 +91,11 @@
                 color: 'rust',
                 class: 'bg-rust',
                 links: [
-                    { href: 'https://stock-sr.jd.com/h5/stock-score/index.html?theme=stock-back-white&utm_term=copyurl#/homepage', iconClass: 'bi-bar-chart-line', title: '贪恐指数(JD)', iconColor: 'text-rust' },
-                    { href: 'https://u.jr.jd.com/uc-fe-growing/indexfund/disappreciation/?from=dongdongyouyu', iconClass: 'bi-arrow-down-circle', title: '低估指数', iconColor: 'text-rust' },
+                    { href: 'https://stock-sr.jd.com/h5/stock-score/index.html?theme=stock-back-white&utm_term=copyurl#/homepage', icon: 'bi-bar-chart-line', title: '贪恐指数(JD)' },
+                    { href: 'https://u.jr.jd.com/uc-fe-growing/indexfund/disappreciation/?from=dongdongyouyu', icon: 'bi-arrow-down-circle', title: '低估指数' },
                     { 
                         href: 'https://gu.qq.com/i/#/1/all/mk', 
-                        iconClass: 'bi-stock', 
+                        icon: 'fa-line-chart', // 更换为Font Awesome的折线图图标
                         title: '腾讯自选股', 
                         iconColor: 'text-rust'
                     }
@@ -81,9 +107,9 @@
                 color: 'terracotta',
                 class: 'bg-terracotta',
                 links: [
-                    { href: 'https://channel.jr.jd.com/wealthAssets/index/?source=jdcfgongzhonghao&channelCode=CFCCsingle01&fundUtmSource=1089_jdcfgongzhonghao&fundUtmParam=totalHoldjdcfgongzhonghao', iconClass: 'bi-graph-up', title: '理财账户', iconColor: 'text-terracotta' },
-                    { href: 'https://app.jiucaishuo.com/pagesE/fund_book/index', iconClass: 'bi-pie-chart', title: '韭圈儿', iconColor: 'text-terracotta' },
-                    { href: 'https://tzzb.10jqka.com.cn/pc/index.html#/myAccount/a/i0YgEm8', iconClass: 'bi-book', title: '投资账本', iconColor: 'text-terracotta' }
+                    { href: 'https://channel.jr.jd.com/wealthAssets/index/?source=jdcfgongzhonghao&channelCode=CFCCsingle01&fundUtmSource=1089_jdcfgongzhonghao&fundUtmParam=totalHoldjdcfgongzhonghao', icon: 'bi-graph-up', title: '理财账户' },
+                    { href: 'https://app.jiucaishuo.com/pagesE/fund_book/index', icon: 'bi-pie-chart', title: '韭圈儿' },
+                    { href: 'https://tzzb.10jqka.com.cn/pc/index.html#/myAccount/a/i0YgEm8', icon: 'bi-book', title: '投资账本' }
                 ]
             },
             {
@@ -92,10 +118,10 @@
                 color: 'wine',
                 class: 'bg-wine',
                 links: [
-                    { href: 'https://mse.jd.com/monthReport/aggregation/?utm_term=copyurl', iconClass: 'bi-calendar-check', title: '理财月报', iconColor: 'text-wine' },
-                    { href: 'https://mix.jd.com/mix/asset-mark/home/?pageIndex=2&fundUtmSource=1089_jdcfgongzhonghao&fundUtmParam=totalHoldjdcfgongzhonghao', iconClass: 'bi-list-ol', title: '账户明细', iconColor: 'text-wine' },
-                    { href: 'https://roma.jd.com/bill/JRJueMyBillModule?source=10&entrance=3#pageBillEntry', iconClass: 'bi-credit-card', title: '账单明细', iconColor: 'text-wine' },
-                    { href: 'https://roma.jd.com/fund/hold/clear/history/', iconClass: 'bi-archive', title: '清仓记录', iconColor: 'text-wine' }
+                    { href: 'https://mse.jd.com/monthReport/aggregation/?utm_term=copyurl', icon: 'bi-calendar-check', title: '理财月报' },
+                    { href: 'https://mix.jd.com/mix/asset-mark/home/?pageIndex=2&fundUtmSource=1089_jdcfgongzhonghao&fundUtmParam=totalHoldjdcfgongzhonghao', icon: 'bi-list-ol', title: '账户明细' },
+                    { href: 'https://roma.jd.com/bill/JRJueMyBillModule?source=10&entrance=3#pageBillEntry', icon: 'bi-credit-card', title: '账单明细' },
+                    { href: 'https://roma.jd.com/fund/hold/clear/history/', icon: 'bi-archive', title: '清仓记录' }
                 ]
             },
             {
@@ -104,44 +130,65 @@
                 color: 'brick',
                 class: 'bg-brick',
                 links: [
-                    { href: 'https://member.jr.jd.com/member/memberCenter/badge/?businessCode=caifu&channel=81', iconClass: 'bi-cash-coin', title: '财富会员', iconColor: 'text-brick' },
-                    { href: 'https://lca.jd.com/business/monthly-card/new-home/?fundUtmSource=310&fundUtmParam=fund_jjcc&cardType=3&QYKChannel=home&jrcontainer=h5&jrlogin=true', iconClass: 'bi-gift', title: '理财权益卡', iconColor: 'text-brick' },
-                    { href: 'https://jcca-h5-federation.jr.jd.com/jccaMember/index?channelCode=jd-gzh-hytq', iconClass: 'bi-credit-card-2-front', title: '京东信用卡', iconColor: 'text-brick' }
+                    { href: 'https://member.jr.jd.com/member/memberCenter/badge/?businessCode=caifu&channel=81', icon: 'bi-cash-coin', title: '财富会员' },
+                    { href: 'https://lca.jd.com/business/monthly-card/new-home/?fundUtmSource=310&fundUtmParam=fund_jjcc&cardType=3&QYKChannel=home&jrcontainer=h5&jrlogin=true', icon: 'bi-gift', title: '理财权益卡' },
+                    { href: 'https://jcca-h5-federation.jr.jd.com/jccaMember/index?channelCode=jd-gzh-hytq', icon: 'bi-credit-card-2-front', title: '京东信用卡' }
                 ]
             }
         ];
 
-        function generateCategoryHTML(category) {
-            return `
-                <div class="category-card">
-                    <div class="${category.class} category-header">
-                        <i class="${category.icon} mr-3 text-xl"></i>
-                        <h2 class="category-title">${category.title}</h2>
-                    </div>
-                    <div class="p-3"> <!-- 减小分类内容内边距 -->
-                        <div class="mobile-card-grid sm:card-grid"> <!-- 根据屏幕大小切换网格布局 -->
-                            ${category.links.map(link => generateLinkHTML(link, category.color)).join('')}
-                        </div>
-                    </div>
-                </div>
-            `;
+        // 生成图标HTML
+        function generateIconHTML(iconClass) {
+            const [libraryPrefix, iconName] = iconClass.split('-');
+            const libraryName = ICON_LIBRARIES[libraryPrefix] || 'bootstrap-icons';
+            
+            // 根据图标库类型生成对应的HTML
+            switch(libraryPrefix) {
+                case 'fa': // Font Awesome
+                    return `<i class="fa ${iconClass}"></i>`;
+                case 'ri': // Remix Icon
+                    return `<i class="ri ${iconClass}"></i>`;
+                default: // Bootstrap Icons
+                    return `<i class="bi ${iconClass}"></i>`;
+            }
         }
 
+        // 生成链接卡片HTML
         function generateLinkHTML(link, categoryColor) {
             return `
-                <a href="${link.href}" class="mobile-link-card bg-gray-50 card-hover">
+                <a href="${link.href}" class="bg-white rounded-xl p-4 shadow-card card-hover">
                     <div class="flex items-center">
-                        <div class="w-8 h-8 flex items-center justify-center ${link.iconColor || `text-${categoryColor}`} mr-2"> <!-- 减小图标容器 -->
-                            <i class="${link.iconClass} text-base"></i> <!-- 减小图标大小 -->
+                        <div class="icon-container ${link.iconColor || `bg-${categoryColor}/10 text-${categoryColor}`} mr-4">
+                            ${generateIconHTML(link.icon)}
                         </div>
                         <div class="flex-1">
-                            <h3 class="font-medium text-sm">${link.title}</h3> <!-- 减小标题文字大小 -->
+                            <h3 class="font-medium text-base">${link.title}</h3>
                         </div>
                     </div>
                 </a>
             `;
         }
 
+        // 生成分类HTML
+        function generateCategoryHTML(category) {
+            return `
+                <section class="bg-white rounded-xl shadow-md overflow-hidden transition-all duration-300 hover:shadow-lg">
+                    <header class="${category.class} px-5 py-4 flex items-center">
+                        <div class="icon-container bg-white/20 mr-4">
+                            ${generateIconHTML(category.icon)}
+                        </div>
+                        <h2 class="category-title text-white">${category.title}</h2>
+                    </header>
+                    <div class="p-4">
+                        <div class="card-grid">
+                            ${category.links.map(link => generateLinkHTML(link, category.color)).join('')}
+                        </div>
+                    </div>
+                </section>
+            `;
+        }
+
+        // 初始化页面
         document.addEventListener('DOMContentLoaded', () => {
             const container = document.getElementById('links-container');
             container.innerHTML = categories.map(generateCategoryHTML).join('');
