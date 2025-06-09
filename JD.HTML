@@ -52,6 +52,9 @@
             .icon-container {
                 @apply w-10 h-10 flex items-center justify-center rounded-lg;
             }
+            .text-wrap-balance {
+                text-wrap: balance;
+            }
         }
     </style>
 </head>
@@ -95,7 +98,7 @@
                     { href: 'https://u.jr.jd.com/uc-fe-growing/indexfund/disappreciation/?from=dongdongyouyu', icon: 'bi-arrow-down-circle', title: '低估指数' },
                     { 
                         href: 'https://gu.qq.com/i/#/1/all/mk', 
-                        icon: 'fa-line-chart', // 更换为Font Awesome的折线图图标
+                        icon: 'fa-line-chart', 
                         title: '腾讯自选股', 
                         iconColor: 'text-rust'
                     }
@@ -161,8 +164,8 @@
                         <div class="icon-container ${link.iconColor || `bg-${categoryColor}/10 text-${categoryColor}`} mr-4">
                             ${generateIconHTML(link.icon)}
                         </div>
-                        <div class="flex-1">
-                            <h3 class="font-medium text-base">${link.title}</h3>
+                        <div class="flex-1 min-w-0"> <!-- 添加min-w-0确保文本区域可以收缩 -->
+                            <h3 class="font-medium text-sm sm:text-base text-wrap-balance truncate">${link.title}</h3> <!-- 添加响应式字体和平衡换行 -->
                         </div>
                     </div>
                 </a>
