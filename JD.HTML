@@ -37,22 +37,24 @@
             .category-card { @apply bg-white rounded-xl shadow-md overflow-hidden mb-6 transition-all duration-300 hover:shadow-lg; }
             .category-header { @apply p-4 flex items-center text-white; }
             .card-hover { @apply transition-all duration-300 hover:shadow-md hover:-translate-y-1; }
+            .mobile-card-grid { @apply grid grid-cols-2 gap-2; } /* 手机端两列布局 */
+            .mobile-link-card { @apply p-3 rounded-lg shadow-sm hover:shadow-md transition-shadow; } /* 优化移动端卡片样式 */
         }
     </style>
 </head>
 <body class="bg-gray-50 min-h-screen font-sans text-gray-800">
-    <div class="mx-auto px-4 py-6">
-        <div class="bg-primary rounded-xl p-4 mb-4 flex items-center">
-            <div class="w-12 h-12 bg-white rounded-lg flex items-center justify-center mr-4 shadow-sm">
-                <span class="text-primary font-bold text-xl">JD</span>
+    <div class="mx-auto px-3 py-4"> <!-- 减小页面边距 -->
+        <div class="bg-primary rounded-xl p-3 mb-4 flex items-center"> <!-- 减小标题区域内边距 -->
+            <div class="w-10 h-10 bg-white rounded-lg flex items-center justify-center mr-3 shadow-sm"> <!-- 减小logo尺寸 -->
+                <span class="text-primary font-bold text-lg">JD</span> <!-- 减小logo文字大小 -->
             </div>
             <div>
-                <h1 class="text-xl font-bold text-white">理财中心</h1>
+                <h1 class="text-lg font-bold text-white">理财中心</h1> <!-- 减小标题文字大小 -->
                 <p class="text-xs text-white/80">您的财务管家</p>
             </div>
         </div>
 
-        <div id="links-container" class="space-y-6"></div>
+        <div id="links-container" class="space-y-4"></div> <!-- 减小分类间距 -->
     </div>
 
     <script>
@@ -65,7 +67,12 @@
                 links: [
                     { href: 'https://stock-sr.jd.com/h5/stock-score/index.html?theme=stock-back-white&utm_term=copyurl#/homepage', iconClass: 'bi-bar-chart-line', title: '贪恐指数(JD)', iconColor: 'text-rust' },
                     { href: 'https://u.jr.jd.com/uc-fe-growing/indexfund/disappreciation/?from=dongdongyouyu', iconClass: 'bi-arrow-down-circle', title: '低估指数', iconColor: 'text-rust' },
-                    { href: 'https://gu.qq.com/i/#/1/all/mk', iconClass: 'bi-line-chart', title: '腾讯自选股', iconColor: 'text-rust' }
+                    { 
+                        href: 'https://gu.qq.com/i/#/1/all/mk', 
+                        iconClass: 'bi-stock', 
+                        title: '腾讯自选股', 
+                        iconColor: 'text-rust'
+                    }
                 ]
             },
             {
@@ -75,7 +82,7 @@
                 class: 'bg-terracotta',
                 links: [
                     { href: 'https://channel.jr.jd.com/wealthAssets/index/?source=jdcfgongzhonghao&channelCode=CFCCsingle01&fundUtmSource=1089_jdcfgongzhonghao&fundUtmParam=totalHoldjdcfgongzhonghao', iconClass: 'bi-graph-up', title: '理财账户', iconColor: 'text-terracotta' },
-                    { href: 'https://app.jiucaishuo.com/pagesE/fund_book/index', iconClass: 'bi-pie-chart', title: '韭圈儿', iconColor: 'text-terracotta' }, // 已移除customIcon
+                    { href: 'https://app.jiucaishuo.com/pagesE/fund_book/index', iconClass: 'bi-pie-chart', title: '韭圈儿', iconColor: 'text-terracotta' },
                     { href: 'https://tzzb.10jqka.com.cn/pc/index.html#/myAccount/a/i0YgEm8', iconClass: 'bi-book', title: '投资账本', iconColor: 'text-terracotta' }
                 ]
             },
@@ -111,8 +118,8 @@
                         <i class="${category.icon} mr-3 text-xl"></i>
                         <h2 class="category-title">${category.title}</h2>
                     </div>
-                    <div class="p-4">
-                        <div class="card-grid">
+                    <div class="p-3"> <!-- 减小分类内容内边距 -->
+                        <div class="mobile-card-grid sm:card-grid"> <!-- 根据屏幕大小切换网格布局 -->
                             ${category.links.map(link => generateLinkHTML(link, category.color)).join('')}
                         </div>
                     </div>
@@ -122,16 +129,13 @@
 
         function generateLinkHTML(link, categoryColor) {
             return `
-                <a href="${link.href}" class="block bg-gray-50 rounded-lg p-3 card-shadow card-hover">
+                <a href="${link.href}" class="mobile-link-card bg-gray-50 card-hover">
                     <div class="flex items-center">
-                        <div class="w-10 h-10 flex items-center justify-center ${link.iconColor || `text-${categoryColor}`} mr-3">
-                            <i class="${link.iconClass} text-lg"></i>
+                        <div class="w-8 h-8 flex items-center justify-center ${link.iconColor || `text-${categoryColor}`} mr-2"> <!-- 减小图标容器 -->
+                            <i class="${link.iconClass} text-base"></i> <!-- 减小图标大小 -->
                         </div>
                         <div class="flex-1">
-                            <h3 class="font-semibold text-base">${link.title}</h3>
-                        </div>
-                        <div class="text-gray-400">
-                            <i class="bi-chevron-right text-lg"></i>
+                            <h3 class="font-medium text-sm">${link.title}</h3> <!-- 减小标题文字大小 -->
                         </div>
                     </div>
                 </a>
