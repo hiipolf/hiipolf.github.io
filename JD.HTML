@@ -7,8 +7,6 @@
     <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%239D5C5C'/%3E%3Ctext x='50' y='60' font-family='Arial' font-size='40' font-weight='bold' text-anchor='middle' fill='white'%3EJD%3C/text%3E%3C/svg%3E">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.min.css" rel="stylesheet">
     
     <script>
         // 定义多个莫兰迪色系主题
@@ -48,6 +46,51 @@
                 light: '#D0C6D7',
                 dark: '#625670',
                 name: '紫色系'
+            },
+            // 新增暖橙色系
+            orange: {
+                primary: '#A67C52',
+                secondary: '#C19A6B',
+                accent: '#D4A017',
+                light: '#E8C19B',
+                dark: '#8B5A2B',
+                name: '暖橙色'
+            },
+            // 新增靛蓝色系
+            indigo: {
+                primary: '#5D6D7E',
+                secondary: '#7B8D9E',
+                accent: '#99AAB5',
+                light: '#B7C3CF',
+                dark: '#4A5568',
+                name: '靛蓝色'
+            },
+            // 新增薄荷绿系
+            mint: {
+                primary: '#73A68C',
+                secondary: '#92BDA3',
+                accent: '#A9CCA9',
+                light: '#C1DFC4',
+                dark: '#5C8A73',
+                name: '薄荷绿'
+            },
+            // 新增珊瑚色系
+            coral: {
+                primary: '#D57E7E',
+                secondary: '#E29C9C',
+                accent: '#E9BABA',
+                light: '#F0D6D6',
+                dark: '#B26A6A',
+                name: '珊瑚色'
+            },
+            // 新增金棕色系
+            gold: {
+                primary: '#A67C52',
+                secondary: '#C19A6B',
+                accent: '#D4A017',
+                light: '#E8C19B',
+                dark: '#8B5A2B',
+                name: '金棕色'
             }
         };
 
@@ -135,7 +178,7 @@
         <header id="header" class="bg-primary rounded-xl p-4 mb-6 shadow-md">
             <div class="flex items-center">
                 <div class="icon-container bg-white text-primary mr-4 shadow-sm">
-                    <span class="font-bold text-xl">JD</span>
+                    <span class="fa fa-home font-bold text-xl"></span>
                 </div>
                 <div>
                     <h1 class="text-xl font-bold text-white">理财中心</h1>
@@ -147,7 +190,7 @@
         <!-- 主内容区 -->
         <main id="links-container" class="space-y-6"></main>
 
-        <!-- 主题选择器 -->
+        <!-- 主题选择器 - 增加了新的色系选择 -->
         <div class="bg-white rounded-xl p-4 shadow-md mt-8">
             <div class="flex items-center justify-between">
                 <h3 class="font-bold text-gray-700">选择主题颜色</h3>
@@ -156,88 +199,79 @@
                     <div class="theme-dot" data-theme="blue" style="background-color: #5C7CA1;"></div>
                     <div class="theme-dot" data-theme="green" style="background-color: #6B8E84;"></div>
                     <div class="theme-dot" data-theme="purple" style="background-color: #7A6B8E;"></div>
+                    <div class="theme-dot" data-theme="orange" style="background-color: #A67C52;"></div>
+                    <div class="theme-dot" data-theme="indigo" style="background-color: #5D6D7E;"></div>
+                    <div class="theme-dot" data-theme="mint" style="background-color: #73A68C;"></div>
+                    <div class="theme-dot" data-theme="coral" style="background-color: #D57E7E;"></div>
+                    <div class="theme-dot" data-theme="gold" style="background-color: #A67C52;"></div>
                 </div>
             </div>
         </div>
     </div>
 
     <script>
-        // 图标配置 - 统一管理图标映射，支持多图标库
+        // 图标配置 - 仅保留Font Awesome
         const ICON_LIBRARIES = {
-            'bi': 'bootstrap-icons',
-            'fa': 'font-awesome',
-            'ri': 'remix-icon'
+            'fa': 'font-awesome'
         };
 
-        // 应用数据
+        // 应用数据 - 所有图标切换为Font Awesome类名
         const categories = [
             {
                 title: '理财信息',
-                icon: 'bi-info-circle',
+                icon: 'fa-info-circle',
                 color: 'secondary',
                 class: 'bg-primary',
                 links: [
-                    { href: 'https://stock-sr.jd.com/h5/stock-score/index.html?theme=stock-back-white&utm_term=copyurl#/homepage', icon: 'bi-bar-chart-line', title: '贪恐指数(JD)' },
-                    { href: 'https://u.jr.jd.com/uc-fe-growing/indexfund/disappreciation/?from=dongdongyouyu', icon: 'bi-arrow-down-circle', title: '低估指数' },
+                    { href: 'https://stock-sr.jd.com/h5/stock-score/index.html?theme=stock-back-white&utm_term=copyurl#/homepage', icon: 'fa-line-chart', title: '贪恐指数(JD)' },
+                    { href: 'https://u.jr.jd.com/uc-fe-growing/indexfund/disappreciation/?from=dongdongyouyu', icon: 'fa-arrow-down', title: '低估指数' },
                     { 
                         href: 'https://gu.qq.com/i/#/1/all/mk', 
                         icon: 'fa-line-chart', 
-                        title: '腾讯自选股', 
-                        iconColor: 'text-secondary'
+                        title: '腾讯自选股'
                     }
                 ]
             },
             {
                 title: '理财账本',
-                icon: 'bi-calculator',
+                icon: 'fa-calculator',
                 color: 'secondary',
                 class: 'bg-primary',
                 links: [
-                    { href: 'https://channel.jr.jd.com/wealthAssets/index/?source=jdcfgongzhonghao&channelCode=CFCCsingle01&fundUtmSource=1089_jdcfgongzhonghao&fundUtmParam=totalHoldjdcfgongzhonghao', icon: 'bi-graph-up', title: '理财账户' },
-                    { href: 'https://app.jiucaishuo.com/pagesE/fund_book/index', icon: 'bi-pie-chart', title: '韭圈儿' },
-                    { href: 'https://tzzb.10jqka.com.cn/pc/index.html#/myAccount/a/i0YgEm8', icon: 'bi-book', title: '投资账本' }
+                    { href: 'https://channel.jr.jd.com/wealthAssets/index/?source=jdcfgongzhonghao&channelCode=CFCCsingle01&fundUtmSource=1089_jdcfgongzhonghao&fundUtmParam=totalHoldjdcfgongzhonghao', icon: 'fa-area-chart', title: '理财账户' },
+                    { href: 'https://app.jiucaishuo.com/pagesE/fund_book/index', icon: 'fa-pie-chart', title: '韭圈儿' },
+                    { href: 'https://tzzb.10jqka.com.cn/pc/index.html#/myAccount/a/i0YgEm8', icon: 'fa-book', title: '投资账本' }
                 ]
             },
             {
                 title: '理财报表',
-                icon: 'bi-file-text',
+                icon: 'fa-file-text-o',
                 color: 'secondary',
                 class: 'bg-primary',
                 links: [
-                    { href: 'https://mse.jd.com/monthReport/aggregation/?utm_term=copyurl', icon: 'bi-calendar-check', title: '理财月报' },
-                    { href: 'https://mix.jd.com/mix/asset-mark/home/?pageIndex=2&fundUtmSource=1089_jdcfgongzhonghao&fundUtmParam=totalHoldjdcfgongzhonghao', icon: 'bi-list-ol', title: '账户明细' },
-                    { href: 'https://roma.jd.com/bill/JRJueMyBillModule?source=10&entrance=3#pageBillEntry', icon: 'bi-credit-card', title: '账单明细' },
-                    { href: 'https://roma.jd.com/fund/hold/clear/history/', icon: 'bi-archive', title: '清仓记录' }
+                    { href: 'https://mse.jd.com/monthReport/aggregation/?utm_term=copyurl', icon: 'fa-calendar-check-o', title: '理财月报' },
+                    { href: 'https://mix.jd.com/mix/asset-mark/home/?pageIndex=2&fundUtmSource=1089_jdcfgongzhonghao&fundUtmParam=totalHoldjdcfgongzhonghao', icon: 'fa-list-ol', title: '账户明细' },
+                    { href: 'https://roma.jd.com/bill/JRJueMyBillModule?source=10&entrance=3#pageBillEntry', icon: 'fa-credit-card', title: '账单明细' },
+                    { href: 'https://roma.jd.com/fund/hold/clear/history/', icon: 'fa-archive', title: '清仓记录' }
                 ]
             },
             {
                 title: '理财权益',
-                icon: 'bi-gift',
+                icon: 'fa-gift',
                 color: 'secondary',
                 class: 'bg-primary',
                 links: [
-                    { href: 'https://member.jr.jd.com/member/memberCenter/badge/?businessCode=caifu&channel=81', icon: 'bi-cash-coin', title: '财富会员' },
-                    { href: 'https://lca.jd.com/business/monthly-card/new-home/?fundUtmSource=310&fundUtmParam=fund_jjcc&cardType=3&QYKChannel=home&jrcontainer=h5&jrlogin=true', icon: 'bi-gift', title: '理财权益卡' },
-                    { href: 'https://jcca-h5-federation.jr.jd.com/jccaMember/index?channelCode=jd-gzh-hytq', icon: 'bi-credit-card-2-front', title: '京东信用卡' },
-                    { href: 'https://show.jd.com/m/GVp5/?pageKey=GVp5', icon: 'bi-calendar-month', title: '月度权益' }
+                    { href: 'https://member.jr.jd.com/member/memberCenter/badge/?businessCode=caifu&channel=81', icon: 'fa-money', title: '财富会员' },
+                    { href: 'https://lca.jd.com/business/monthly-card/new-home/?fundUtmSource=310&fundUtmParam=fund_jjcc&cardType=3&QYKChannel=home&jrcontainer=h5&jrlogin=true', icon: 'fa-gift', title: '理财权益卡' },
+                    { href: 'https://jcca-h5-federation.jr.jd.com/jccaMember/index?channelCode=jd-gzh-hytq', icon: 'fa-credit-card', title: '京东信用卡' },
+                    { href: 'https://show.jd.com/m/GVp5/?pageKey=GVp5', icon: 'fa-calendar', title: '月度权益' }
                 ]
             }
         ];
 
-        // 生成图标HTML
+        // 生成图标HTML - 仅处理Font Awesome
         function generateIconHTML(iconClass) {
-            const [libraryPrefix, iconName] = iconClass.split('-');
-            const libraryName = ICON_LIBRARIES[libraryPrefix] || 'bootstrap-icons';
-            
-            // 根据图标库类型生成对应的HTML
-            switch(libraryPrefix) {
-                case 'fa': // Font Awesome
-                    return `<i class="fa ${iconClass}"></i>`;
-                case 'ri': // Remix Icon
-                    return `<i class="ri ${iconClass}"></i>`;
-                default: // Bootstrap Icons
-                    return `<i class="bi ${iconClass}"></i>`;
-            }
+            return `<i class="fa ${iconClass}"></i>`;
         }
 
         // 生成链接卡片HTML
@@ -248,8 +282,8 @@
                         <div class="icon-container ${link.iconColor || `bg-${categoryColor}/10 text-${categoryColor}`} mr-4">
                             ${generateIconHTML(link.icon)}
                         </div>
-                        <div class="flex-1 min-w-0"> <!-- 添加min-w-0确保文本区域可以收缩 -->
-                            <h3 class="font-medium text-sm sm:text-base text-wrap-balance truncate">${link.title}</h3> <!-- 添加响应式字体和平衡换行 -->
+                        <div class="flex-1 min-w-0">
+                            <h3 class="font-medium text-sm sm:text-base text-wrap-balance truncate">${link.title}</h3>
                         </div>
                     </div>
                 </a>
@@ -277,37 +311,26 @@
 
         // 应用主题
         function applyTheme(theme) {
-            // 获取根元素
             const root = document.documentElement;
-            
-            // 应用主题颜色到CSS变量
             root.style.setProperty('--color-primary', theme.primary);
             root.style.setProperty('--color-secondary', theme.secondary);
             root.style.setProperty('--color-accent', theme.accent);
             root.style.setProperty('--color-light', theme.light);
             root.style.setProperty('--color-dark', theme.dark);
             
-            // 更新主题选择器的活动状态
             document.querySelectorAll('.theme-dot').forEach(dot => {
                 dot.classList.toggle('active', dot.dataset.theme === theme.name.toLowerCase());
             });
             
-            // 保存主题偏好到本地存储
             localStorage.setItem('selectedTheme', theme.name.toLowerCase());
-            
-            console.log(`主题已切换为: ${theme.name}`);
         }
 
         // 初始化主题
         function initTheme() {
-            // 检查本地存储中是否有保存的主题偏好
             const savedTheme = localStorage.getItem('selectedTheme');
-            const theme = THEMES[savedTheme] || THEMES.red; // 默认使用红色系
-            
-            // 应用主题
+            const theme = THEMES[savedTheme] || THEMES.red;
             applyTheme(theme);
             
-            // 为主题选择器添加点击事件
             document.querySelectorAll('.theme-dot').forEach(dot => {
                 dot.addEventListener('click', () => {
                     const themeName = dot.dataset.theme;
@@ -320,17 +343,12 @@
 
         // 初始化页面
         document.addEventListener('DOMContentLoaded', () => {
-            // 初始化主题
             initTheme();
             
-            // 生成内容
             const container = document.getElementById('links-container');
             container.innerHTML = categories.map(generateCategoryHTML).join('');
             
-            // 动态设置导航栏背景色
             document.getElementById('header').classList.add('bg-primary');
-            
-            console.log('页面已加载，主题系统已初始化');
         });
     </script>
 </body>
