@@ -11,18 +11,56 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.min.css" rel="stylesheet">
     
     <script>
+        // 定义多个莫兰迪色系主题
+        const THEMES = {
+            // 红色系莫兰迪配色（默认）
+            red: {
+                primary: '#9D5C5C',
+                secondary: '#C48282',
+                accent: '#D49A89',
+                light: '#E5BDAF',
+                dark: '#B85C38',
+                name: '红色系'
+            },
+            // 蓝色系莫兰迪配色
+            blue: {
+                primary: '#5C7CA1',
+                secondary: '#7A9BBF',
+                accent: '#9BB7D4',
+                light: '#BFD1E5',
+                dark: '#4A6583',
+                name: '蓝色系'
+            },
+            // 绿色系莫兰迪配色
+            green: {
+                primary: '#6B8E84',
+                secondary: '#8AA99F',
+                accent: '#A8C0B7',
+                light: '#C6D7D0',
+                dark: '#567068',
+                name: '绿色系'
+            },
+            // 紫色系莫兰迪配色
+            purple: {
+                primary: '#7A6B8E',
+                secondary: '#9A8AA9',
+                accent: '#B7A8C0',
+                light: '#D0C6D7',
+                dark: '#625670',
+                name: '紫色系'
+            }
+        };
+
+        // 配置Tailwind使用CSS变量
         tailwind.config = {
             theme: {
                 extend: {
                     colors: {
-                        // 红色系莫兰迪配色
-                        rust: '#C48282',
-                        terracotta: '#D49A89',
-                        terracottaLight: '#E5BDAF',
-                        wine: '#9D5C5C',
-                        brick: '#B85C38',
-                        primary: '#9D5C5C', // 使用wine作为主色调
-                        secondary: '#C48282' // 使用rust作为辅助色
+                        primary: 'var(--color-primary)',
+                        secondary: 'var(--color-secondary)',
+                        accent: 'var(--color-accent)',
+                        light: 'var(--color-light)',
+                        dark: 'var(--color-dark)',
                     },
                     fontFamily: {
                         sans: ['Inter', 'system-ui', 'sans-serif'],
@@ -55,6 +93,38 @@
             .text-wrap-balance {
                 text-wrap: balance;
             }
+            .theme-dot {
+                @apply w-6 h-6 rounded-full cursor-pointer transition-all duration-300 ring-2 ring-transparent hover:scale-110;
+            }
+            .theme-dot.active {
+                @apply ring-2 ring-white ring-offset-2 ring-offset-gray-200;
+            }
+        }
+        
+        /* 添加颜色变量和过渡效果 */
+        :root {
+            --color-primary: #9D5C5C;
+            --color-secondary: #C48282;
+            --color-accent: #D49A89;
+            --color-light: #E5BDAF;
+            --color-dark: #B85C38;
+        }
+        
+        /* 添加平滑过渡效果 */
+        body {
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        
+        .bg-primary, .bg-secondary, .bg-accent, .bg-light, .bg-dark {
+            transition: background-color 0.3s ease;
+        }
+        
+        .text-primary, .text-secondary, .text-accent, .text-light, .text-dark {
+            transition: color 0.3s ease;
+        }
+        
+        .border-primary, .border-secondary, .border-accent, .border-light, .border-dark {
+            transition: border-color 0.3s ease;
         }
     </style>
 </head>
@@ -62,7 +132,7 @@
     <!-- 页面容器 -->
     <div class="container mx-auto px-4 py-6">
         <!-- 顶部导航栏 -->
-        <header class="bg-primary rounded-xl p-4 mb-6 shadow-md">
+        <header id="header" class="bg-primary rounded-xl p-4 mb-6 shadow-md">
             <div class="flex items-center">
                 <div class="icon-container bg-white text-primary mr-4 shadow-sm">
                     <span class="font-bold text-xl">JD</span>
@@ -76,6 +146,19 @@
 
         <!-- 主内容区 -->
         <main id="links-container" class="space-y-6"></main>
+
+        <!-- 主题选择器 -->
+        <div class="bg-white rounded-xl p-4 shadow-md mt-8">
+            <div class="flex items-center justify-between">
+                <h3 class="font-bold text-gray-700">选择主题颜色</h3>
+                <div class="flex space-x-2" id="theme-selector">
+                    <div class="theme-dot active" data-theme="red" style="background-color: #9D5C5C;"></div>
+                    <div class="theme-dot" data-theme="blue" style="background-color: #5C7CA1;"></div>
+                    <div class="theme-dot" data-theme="green" style="background-color: #6B8E84;"></div>
+                    <div class="theme-dot" data-theme="purple" style="background-color: #7A6B8E;"></div>
+                </div>
+            </div>
+        </div>
     </div>
 
     <script>
@@ -91,8 +174,8 @@
             {
                 title: '理财信息',
                 icon: 'bi-info-circle',
-                color: 'rust',
-                class: 'bg-rust',
+                color: 'secondary',
+                class: 'bg-primary',
                 links: [
                     { href: 'https://stock-sr.jd.com/h5/stock-score/index.html?theme=stock-back-white&utm_term=copyurl#/homepage', icon: 'bi-bar-chart-line', title: '贪恐指数(JD)' },
                     { href: 'https://u.jr.jd.com/uc-fe-growing/indexfund/disappreciation/?from=dongdongyouyu', icon: 'bi-arrow-down-circle', title: '低估指数' },
@@ -100,15 +183,15 @@
                         href: 'https://gu.qq.com/i/#/1/all/mk', 
                         icon: 'fa-line-chart', 
                         title: '腾讯自选股', 
-                        iconColor: 'text-rust'
+                        iconColor: 'text-secondary'
                     }
                 ]
             },
             {
                 title: '理财账本',
                 icon: 'bi-calculator',
-                color: 'terracotta',
-                class: 'bg-terracotta',
+                color: 'secondary',
+                class: 'bg-primary',
                 links: [
                     { href: 'https://channel.jr.jd.com/wealthAssets/index/?source=jdcfgongzhonghao&channelCode=CFCCsingle01&fundUtmSource=1089_jdcfgongzhonghao&fundUtmParam=totalHoldjdcfgongzhonghao', icon: 'bi-graph-up', title: '理财账户' },
                     { href: 'https://app.jiucaishuo.com/pagesE/fund_book/index', icon: 'bi-pie-chart', title: '韭圈儿' },
@@ -118,8 +201,8 @@
             {
                 title: '理财报表',
                 icon: 'bi-file-text',
-                color: 'wine',
-                class: 'bg-wine',
+                color: 'secondary',
+                class: 'bg-primary',
                 links: [
                     { href: 'https://mse.jd.com/monthReport/aggregation/?utm_term=copyurl', icon: 'bi-calendar-check', title: '理财月报' },
                     { href: 'https://mix.jd.com/mix/asset-mark/home/?pageIndex=2&fundUtmSource=1089_jdcfgongzhonghao&fundUtmParam=totalHoldjdcfgongzhonghao', icon: 'bi-list-ol', title: '账户明细' },
@@ -130,8 +213,8 @@
             {
                 title: '理财权益',
                 icon: 'bi-gift',
-                color: 'brick',
-                class: 'bg-brick',
+                color: 'secondary',
+                class: 'bg-primary',
                 links: [
                     { href: 'https://member.jr.jd.com/member/memberCenter/badge/?businessCode=caifu&channel=81', icon: 'bi-cash-coin', title: '财富会员' },
                     { href: 'https://lca.jd.com/business/monthly-card/new-home/?fundUtmSource=310&fundUtmParam=fund_jjcc&cardType=3&QYKChannel=home&jrcontainer=h5&jrlogin=true', icon: 'bi-gift', title: '理财权益卡' },
@@ -192,10 +275,62 @@
             `;
         }
 
+        // 应用主题
+        function applyTheme(theme) {
+            // 获取根元素
+            const root = document.documentElement;
+            
+            // 应用主题颜色到CSS变量
+            root.style.setProperty('--color-primary', theme.primary);
+            root.style.setProperty('--color-secondary', theme.secondary);
+            root.style.setProperty('--color-accent', theme.accent);
+            root.style.setProperty('--color-light', theme.light);
+            root.style.setProperty('--color-dark', theme.dark);
+            
+            // 更新主题选择器的活动状态
+            document.querySelectorAll('.theme-dot').forEach(dot => {
+                dot.classList.toggle('active', dot.dataset.theme === theme.name.toLowerCase());
+            });
+            
+            // 保存主题偏好到本地存储
+            localStorage.setItem('selectedTheme', theme.name.toLowerCase());
+            
+            console.log(`主题已切换为: ${theme.name}`);
+        }
+
+        // 初始化主题
+        function initTheme() {
+            // 检查本地存储中是否有保存的主题偏好
+            const savedTheme = localStorage.getItem('selectedTheme');
+            const theme = THEMES[savedTheme] || THEMES.red; // 默认使用红色系
+            
+            // 应用主题
+            applyTheme(theme);
+            
+            // 为主题选择器添加点击事件
+            document.querySelectorAll('.theme-dot').forEach(dot => {
+                dot.addEventListener('click', () => {
+                    const themeName = dot.dataset.theme;
+                    if (THEMES[themeName]) {
+                        applyTheme(THEMES[themeName]);
+                    }
+                });
+            });
+        }
+
         // 初始化页面
         document.addEventListener('DOMContentLoaded', () => {
+            // 初始化主题
+            initTheme();
+            
+            // 生成内容
             const container = document.getElementById('links-container');
             container.innerHTML = categories.map(generateCategoryHTML).join('');
+            
+            // 动态设置导航栏背景色
+            document.getElementById('header').classList.add('bg-primary');
+            
+            console.log('页面已加载，主题系统已初始化');
         });
     </script>
 </body>
